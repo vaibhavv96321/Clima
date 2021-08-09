@@ -7,8 +7,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData.dark(),
-      home: LoadingScreen(),
+      theme: ThemeData.dark(), //https://pub.dev/packages/location
+      home:
+          LoadingScreen(), // this is where i got info about the package Location https://pub.dev/packages/location
     );
   }
 }
