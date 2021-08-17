@@ -24,7 +24,7 @@ class _LocationScreenState extends State<LocationScreen> {
   void initState() {
     super.initState();
 
-    updateData(widget.weatherData);
+    updateData(widget.weatherData);// WE HAVE  used 'widget.'beacuse we have to access the upper class of stateful into this
   }
 
   void updateData(var locationData) {
