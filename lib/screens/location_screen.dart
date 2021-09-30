@@ -43,6 +43,7 @@ class _LocationScreenState extends State<LocationScreen> {
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
+          // this is the property to make decoration behind the container
           image: DecorationImage(
             image: AssetImage('images/location_background.jpg'),
             fit: BoxFit.cover,

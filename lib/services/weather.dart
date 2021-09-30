@@ -5,7 +5,6 @@ import 'package:clima/utilities/constants.dart';
 class WeatherModel {
   Future<dynamic> customCityWeather(var cityName) async {
     var url = '$kUrl&q=$cityName&appid=$kApiKey';
-
     NetworkHelper networkHelper = NetworkHelper(url);
     var weatherHelper = await networkHelper.getData();
     return weatherHelper;
