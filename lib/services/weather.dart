@@ -10,12 +10,12 @@ class WeatherModel {
     return weatherHelper;
   }
 
-  Future<dynamic> getLocationWeather() async {
+  Future<dynamic> getLocationWeather(String url) async {
     Location location = Location();
     await location.getCurrentLocation();
 
     NetworkHelper networkHelper = NetworkHelper(
-        '$kUrl&lat=${location.latitude}&lon=${location.longitude}&appid=$kApiKey');
+        '$url&lat=${location.latitude}&lon=${location.longitude}&appid=$kApiKey');
     var weatherHelper = await networkHelper.getData();
     return weatherHelper;
   }

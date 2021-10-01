@@ -4,6 +4,8 @@ const kApiKey = 'c3e5dbea8fa0bcf22782386cce656bb4#';
 
 const kUrl = 'https://api.openweathermap.org/data/2.5/weather?units=metric';
 
+const kUrl2 = 'https://api.openweathermap.org/data/2.5/forecast?units=metric';
+
 const kTempTextStyle = TextStyle(
   fontFamily: 'Spartan MB',
   fontSize: 90.0,

@@ -20,12 +20,14 @@ class _LocationScreenState extends State<LocationScreen> {
   String weatherMessage;
   String iconMessage;
   WeatherModel weatherModel = WeatherModel();
+  var weather;
 
   @override
   void initState() {
     super.initState();
 
     updateData(widget.weatherData);
+    forcastWeatherFunction();
   }
 
   void updateData(var locationData) {
@@ -37,6 +39,10 @@ class _LocationScreenState extends State<LocationScreen> {
       cityName = locationData['name'];
       weatherMessage = weatherModel.getMessage(temprature);
     });
+  }
+
+  void forcastWeatherFunction() async {
+    weather = await weatherModel.getLocationWeather(kUrl2);
   }
 
   @override
@@ -63,7 +69,8 @@ class _LocationScreenState extends State<LocationScreen> {
                 children: <Widget>[
                   RawMaterialButton(
                     onPressed: () async {
-                      var weatherData = await weatherModel.getLocationWeather();
+                      var weatherData =
+                          await weatherModel.getLocationWeather(kUrl);
                       updateData(weatherData);
                     },
                     child: Icon(
@@ -75,7 +82,7 @@ class _LocationScreenState extends State<LocationScreen> {
                     onPressed: () {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) {
-                        return ForecastScreen();
+                        return ForecastScreen(weatherData: weather);
                       }));
                     },
                     child: Icon(

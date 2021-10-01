@@ -3,7 +3,31 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-class ForecastScreen extends StatelessWidget {
+class ForecastScreen extends StatefulWidget {
+  ForecastScreen({this.weatherData});
+
+  var weatherData;
+
+  @override
+  _ForecastScreenState createState() => _ForecastScreenState();
+}
+
+class _ForecastScreenState extends State<ForecastScreen> {
+  @override
+  int temp;
+
+  void initState() {
+    super.initState();
+    updateData(widget.weatherData);
+  }
+
+  void updateData(var locationData) {
+    setState(() {
+      double tempo = locationData['list'][0]['main']['temp'];
+      temp = tempo.toInt();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -13,11 +37,11 @@ class ForecastScreen extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         child: Row(
           children: [
-            DayForcast(),
-            DayForcast(),
-            DayForcast(),
-            DayForcast(),
-            DayForcast(),
+            DayForcast(temp),
+            DayForcast(temp),
+            DayForcast(temp),
+            DayForcast(temp),
+            DayForcast(temp),
           ],
         ),
       ),
@@ -25,7 +49,16 @@ class ForecastScreen extends StatelessWidget {
   }
 }
 
-class DayForcast extends StatelessWidget {
+class DayForcast extends StatefulWidget {
+  DayForcast(this.temp);
+
+  int temp;
+
+  @override
+  _DayForcastState createState() => _DayForcastState();
+}
+
+class _DayForcastState extends State<DayForcast> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -58,10 +91,11 @@ class DayForcast extends StatelessWidget {
               ),
             ),
             Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
                   child: Text(
-                    '32°',
+                    '${widget.temp}°',
                     style: kTempTextStyle,
                   ),
                 ),
@@ -73,12 +107,31 @@ class DayForcast extends StatelessWidget {
                 ),
               ],
             ),
+            SizedBox(
+              height: 130,
+            ),
             Container(
-                height: 500,
+              child: Text(
+                'Message in City',
+                textAlign: TextAlign.center,
+                style: kMessageTextStyle,
+              ),
+            ),
+            SizedBox(
+              height: 200,
+            ),
+            Container(
+              child: Center(
                 child: Text(
-                  'hello world',
-                  style: kMessageTextStyle,
-                )),
+                  'Have a nice day 😊',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      fontFamily: 'Spartan MB',
+                      fontSize: 40,
+                      color: Colors.grey.shade900),
+                ),
+              ),
+            )
           ],
         ),
       ),
