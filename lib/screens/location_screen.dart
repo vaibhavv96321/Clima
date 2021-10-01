@@ -1,4 +1,3 @@
-import 'package:clima/screens/forcast_screen.dart';
 import 'package:clima/services/weather.dart';
 import 'package:flutter/material.dart';
 import 'package:clima/utilities/constants.dart';
@@ -20,14 +19,12 @@ class _LocationScreenState extends State<LocationScreen> {
   String weatherMessage;
   String iconMessage;
   WeatherModel weatherModel = WeatherModel();
-  var weather;
 
   @override
   void initState() {
     super.initState();
 
     updateData(widget.weatherData);
-    forcastWeatherFunction();
   }
 
   void updateData(var locationData) {
@@ -41,16 +38,11 @@ class _LocationScreenState extends State<LocationScreen> {
     });
   }
 
-  void forcastWeatherFunction() async {
-    weather = await weatherModel.getLocationWeather(kUrl2);
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
-          // this is the property to make decoration behind the container
           image: DecorationImage(
             image: AssetImage('images/location_background.jpg'),
             fit: BoxFit.cover,
@@ -69,25 +61,12 @@ class _LocationScreenState extends State<LocationScreen> {
                 children: <Widget>[
                   RawMaterialButton(
                     onPressed: () async {
-                      var weatherData =
-                          await weatherModel.getLocationWeather(kUrl);
+                      var weatherData = await weatherModel.getLocationWeather();
                       updateData(weatherData);
                     },
                     child: Icon(
                       Icons.near_me,
                       size: 50.0,
-                    ),
-                  ),
-                  RawMaterialButton(
-                    onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) {
-                        return ForecastScreen(weatherData: weather);
-                      }));
-                    },
-                    child: Icon(
-                      Icons.five_k,
-                      size: 50,
                     ),
                   ),
                   RawMaterialButton(
