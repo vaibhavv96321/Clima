@@ -1,4 +1,3 @@
-import 'package:clima/screens/forcast_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:clima/screens/loading_screen.dart';
 
@@ -11,7 +10,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark(), //https://pub.dev/packages/location
       home:
-          ForecastScreen(), // this is where i got info about the package Location https://pub.dev/packages/location
+          LoadingScreen(), // this is where i got info about the package Location https://pub.dev/packages/location
     );
   }
 }

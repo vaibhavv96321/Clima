@@ -6,7 +6,7 @@ const kUrl = 'https://api.openweathermap.org/data/2.5/weather?units=metric';
 
 const kTempTextStyle = TextStyle(
   fontFamily: 'Spartan MB',
-  fontSize: 100.0,
+  fontSize: 90.0,
 );
 
 const kMessageTextStyle = TextStyle(

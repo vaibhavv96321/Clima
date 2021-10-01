@@ -1,3 +1,4 @@
+import 'package:clima/screens/forcast_screen.dart';
 import 'package:clima/services/weather.dart';
 import 'package:flutter/material.dart';
 import 'package:clima/utilities/constants.dart';
@@ -68,6 +69,18 @@ class _LocationScreenState extends State<LocationScreen> {
                     child: Icon(
                       Icons.near_me,
                       size: 50.0,
+                    ),
+                  ),
+                  RawMaterialButton(
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return ForecastScreen();
+                      }));
+                    },
+                    child: Icon(
+                      Icons.five_k,
+                      size: 50,
                     ),
                   ),
                   RawMaterialButton(
