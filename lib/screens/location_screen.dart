@@ -1,3 +1,4 @@
+import 'package:clima/screens/forcast_screen.dart';
 import 'package:clima/services/weather.dart';
 import 'package:flutter/material.dart';
 import 'package:clima/utilities/constants.dart';
@@ -19,6 +20,7 @@ class _LocationScreenState extends State<LocationScreen> {
   String weatherMessage;
   String iconMessage;
   WeatherModel weatherModel = WeatherModel();
+  var weather;
 
   @override
   void initState() {
@@ -36,6 +38,11 @@ class _LocationScreenState extends State<LocationScreen> {
       cityName = locationData['name'];
       weatherMessage = weatherModel.getMessage(temprature);
     });
+    forecastUpdate(cityName);
+  }
+
+  void forecastUpdate(String city) async {
+    weather = await WeatherModel().customCityWeather(city, kUrl2);
   }
 
   @override
@@ -70,15 +77,33 @@ class _LocationScreenState extends State<LocationScreen> {
                     ),
                   ),
                   RawMaterialButton(
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return ForecastScreen(
+                          weatherData: weather,
+                          cityName: cityName,
+                        );
+                      }));
+                    },
+                    child: Icon(
+                      Icons.five_k,
+                      size: 50,
+                    ),
+                  ),
+                  RawMaterialButton(
                     onPressed: () async {
                       var typedName = await Navigator.push(context,
                           MaterialPageRoute(builder: (context) {
                         return CityScreen();
                       }));
                       if (typedName != null) {
-                        var weatherData =
-                            await weatherModel.customCityWeather(typedName);
+                        var weatherData = await weatherModel.customCityWeather(
+                            typedName, kUrl);
+
                         updateData(weatherData);
+                      } else {
+                        print("null cityname");
                       }
                     },
                     child: Icon(

@@ -4,7 +4,8 @@ const kApiKey = 'c3e5dbea8fa0bcf22782386cce656bb4#';
 
 const kUrl = 'https://api.openweathermap.org/data/2.5/weather?units=metric';
 
-const kUrl2 = 'https://api.openweathermap.org/data/2.5/forecast?units=metric';
+const kUrl2 =
+    'https://api.openweathermap.org/data/2.5/forecast?units=metric'; //https://api.openweathermap.org/data/2.5/forecast?units=metric&q=meerut&appid=c3e5dbea8fa0bcf22782386cce656bb4#
 
 const kTempTextStyle = TextStyle(
   fontFamily: 'Spartan MB',
